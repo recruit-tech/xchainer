@@ -15,7 +15,7 @@ Chainerの基本的な使い方につきましては、公式のチュートリ�
 ##Quick Start
 ###Install
 ```shell
-git clone http://batch201qas.b.qas.raftel:8080/gitbucket/git/kato_y/xchainer.git
+git clone https://github.com/recruit-tech/xchainer.git
 cd xchainer
 pip install -r requirements.txt
 pip install .
@@ -142,7 +142,7 @@ $ python ./examples/mnist_simple.py
 一方、`Union`は二つの子`Upper`と`Lower`を持つネットワークです。`NNpacker`では、ネットワークが持つ子は`children`で表されます。また`Union`は`entryPoint`を持たず、子である`Upper`と`Lower`の出力のみを扱います。
 
 このネットワークを図示すると、以下のようになります。
-![nnpacker](http://batch201qas.b.qas.raftel:8080/gitbucket/kato_y/xchainer/blob/master/images/nnpacker.png?raw=true)
+![nnpacker](https://github.com/recruit-tech/xchainer/blob/master/images/nnpacker.png)
 
 `NNpacker`では、親子関係とエントリーポイントにより、最上位の親ノードに位置するネットワークから連なる全てのネットワークを集約管理することができます。
 
