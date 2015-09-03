@@ -1,16 +1,10 @@
 #Overview
 ##About
-Scikit-learnとのアダプターなどを提供するChainerの拡張モジュールです。
-本モジュールの目的は、Chainerにおける学習プロセスの記述の簡略化及び評価・検定手段の拡充です。
-Scikit-learnの評価・検定モジュールを利用するために、Scikit-learnの学習器としてChainerをラップしています。
-Chainerの基本的な使い方につきましては、公式のチュートリアルをご参照ください。
+Xchainer is an expansion tool of [Chainer](http://chainer.org/).
 
-* [Chainer Tutorial](http://docs.chainer.org/en/latest/tutorial/index.html)
-
-##Coding style
-本モジュールのコードは、python標準のPEP8に則って開発しています。
-
-* [pep8 日本語ドキュメント](http://pep8-ja.readthedocs.org/ja/latest/)
+## Aim
+1. To use functions for model evaluation of [Scikit-learn](http://scikit-learn.org/stable/).
+2. To simplify coding of NN learning process. 
 
 ##Quick Start
 ###Install
@@ -25,19 +19,38 @@ pip install .
 $ python -m unittest discover -s tests
 ```
 
-###Examples
+###Examples (mnist)
 ```shell
 $ python ./examples/mnist_simple.py
 ```
+
+It perform 2-fold cross validation test of simple NN for mnist data (10 class).
 
 ```shell
 $ python ./examples/mnist_complex.py
 ```
 
+It perform 2-fold cross validation test of complex NN for mnist data (10 class).
+
+
+#日本語ドキュメント
+##About
+Scikit-learnとのアダプターなどを提供するChainerの拡張モジュールです。
+本モジュールの目的は、Chainerにおける学習プロセスの記述の簡略化及び評価・手段の拡充です。
+Scikit-learnの評価モジュールを利用するために、Scikit-learnの学習器としてChainerをラップしています。
+Chainerの基本的な使い方につきましては、公式のチュートリアルをご参照ください。
+
+* [Chainer Tutorial](http://docs.chainer.org/en/latest/tutorial/index.html)
+
+##Coding style
+本モジュールのコードは、python標準のPEP8に則って開発しています。
+
+* [pep8 日本語ドキュメント](http://pep8-ja.readthedocs.org/ja/latest/)
+
 #Documentation
 ##NNmanager
 `NNmanager`は、学習プロセスのパラメータ化により、必要最低限の記述によるネットワークの定義を可能にします。
-また、`NNmanager`はScikit-learnの学習器として拡張されているため、交差検定やAUC評価など、Scikit-learnから提供されている様々な評価・検定モジュールを利用することができます。
+また、`NNmanager`はScikit-learnの学習器として拡張されているため、交差確認法やAUC評価など、Scikit-learnから提供されている様々な評価モジュールを利用することができます。
 
 
 ###Start with Example
@@ -112,7 +125,7 @@ NNmanagerでは順伝播`forward`メソッドを定義すれば、ニューラ�
 ```
 
 ####trimOutput
-`trimOutput`メソッドは、`forward`メソッドの結果である`output`を受け取り、ネットワークの出力値をラベル（被説明変数）と比較可能な形で取り出します。Scikit-learnの検定・評価モジュールを使う際には、`chainer.Variable`型のままでは扱えないためです。
+`trimOutput`メソッドは、`forward`メソッドの結果である`output`を受け取り、ネットワークの出力値をラベル（被説明変数）と比較可能な形で取り出します。Scikit-learnの評価モジュールを使う際には、`chainer.Variable`型のままでは扱えないためです。
 `trimOutput`メソッドは、デフォルトで`output.data`を取り出して返すので、回帰問題の際にはメソッド・オーバーライドは必要ありません。今回は10クラスの分類問題であるため、10次元列ベクトルの出力値の中で最も大きな値を持つ行番号をラベル値として取得しています。
 
 ```python
@@ -253,7 +266,7 @@ class MnistComplex(NNmanager, ClassifierMixin):
 ```
 
 `forward`メソッドの中では、`NNpacker`インスタンスの`execute`メソッドを呼び出すようにします。
-先ほどと同じように、Scikit-learnのモジュールを使って評価・検定を行うことができます。
+先ほどと同じように、Scikit-learnのモジュールを使って評価を行うことができます。
 
 ```python
 mnist = fetch_mldata('MNIST original')
