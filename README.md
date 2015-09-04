@@ -32,6 +32,8 @@ $ python ./examples/mnist_complex.py
 
 It perform 2-fold cross validation test of complex NN for mnist data (10 class).
 
+##License
+MIT License (See a License file)
 
 #日本語ドキュメント
 ##About
